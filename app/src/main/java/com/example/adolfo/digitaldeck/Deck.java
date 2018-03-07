@@ -11,7 +11,7 @@ import static java.util.Collections.swap;
 
 public class Deck {
     Card []mDeck;
-    int topOfDeck;
+     int topOfDeck;
     static final int DECK_SIZE = 52;
 
     Deck()
@@ -22,6 +22,7 @@ public class Deck {
             mDeck[i] = new Card();
         }
         topOfDeck = 1;
+        this.setDeck();
         this.shuffleDeck();
     }
 
@@ -39,6 +40,7 @@ public class Deck {
             {
                 mDeck[x].mFace = faces[face];
                 mDeck[x].mSuit = suits[suit];
+                mDeck[x].isDrawn = false;
                 x++;
             }
         }
@@ -48,11 +50,13 @@ public class Deck {
     private void shuffleDeck()
     {
         Random rand = new Random();
-        this.setDeck();
+
         for(int x =0; x < DECK_SIZE; x++)
         {
             int i = rand.nextInt(52 - x) + x;
 
+            mDeck[x].isDrawn = false;
+            mDeck[i].isDrawn = false;
             Card temp = mDeck[x];
             mDeck[x] = mDeck[i];
             mDeck[i] = temp;
@@ -67,6 +71,22 @@ public class Deck {
             returnStr += x.toString() + '\n';
 
         return returnStr;
+    }
+
+    public String drawCard()
+    {
+        while(mDeck[topOfDeck].isDrawn == true)
+        {
+            topOfDeck++;
+        }
+        if(topOfDeck >= DECK_SIZE)
+        {
+            this.shuffleDeck();
+        }
+        Card temp = mDeck[topOfDeck];
+        mDeck[topOfDeck].isDrawn = true;
+        topOfDeck++;
+        return temp.toString();
     }
 
 }

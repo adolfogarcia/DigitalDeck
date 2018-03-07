@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-
+    Deck mDeck = new Deck();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,16 +19,17 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
+
     }
 
-    public void showDeck(View v)
+    public void hitMe(View v)
     {
-        TextView textBox = (TextView) findViewById(R.id.txb1);
+        TextView textBox = (TextView) findViewById(R.id.textView1);
         textBox.setText("About to shuffle!");
 
-        Deck mDeck = new Deck();
-
-
-        textBox.setText(mDeck.toString());
+        textBox.setText(mDeck.drawCard());
+        textBox.append('\n'+ Integer.toString(mDeck.topOfDeck));
     }
+
+
 }
