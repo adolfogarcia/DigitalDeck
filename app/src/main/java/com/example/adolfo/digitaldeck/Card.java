@@ -7,13 +7,15 @@ import java.util.Comparator;
  */
 
 public class Card implements Comparable<Card> {
-    public Suit mSuit;
-    public Face  mFace;
+    public Suit mSuit = Suit.NONE;
+    public Face  mFace = Face.NONE;
+    public boolean isDrawn = false;
 
     Card()
     {
         mSuit = Suit.NONE;
         mFace = Face.NONE;
+        isDrawn = false;
     }
 
     Card(Suit newSuit, Face newFace)
