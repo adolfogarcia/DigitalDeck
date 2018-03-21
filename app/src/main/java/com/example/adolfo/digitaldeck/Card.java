@@ -18,6 +18,14 @@ public class Card implements Comparable<Card> {
         isDrawn = false;
     }
 
+    //Copy Constructor
+    Card(Card copy)
+    {
+        this.mSuit = copy.mSuit;
+        this.mFace = copy.mFace;
+        this.isDrawn = copy.isDrawn;
+    }
+
     Card(Suit newSuit, Face newFace)
     {
         mSuit = newSuit;
@@ -55,5 +63,31 @@ public class Card implements Comparable<Card> {
             return 0;
         return 0;
     }
+
+}
+
+
+
+class handCard extends Card
+{
+    int handPosition;
+
+    handCard()
+    {
+        super();
+        mSuit = Suit.NONE;
+        mFace = Face.NONE;
+        isDrawn = false;
+        handPosition = 0;
+    }
+
+    handCard(Card baseCard, int pos)
+    {
+        this.mSuit = baseCard.mSuit;
+        this.mFace = baseCard.mFace;
+        this.isDrawn = baseCard.isDrawn;
+        handPosition = pos;
+    }
+
 
 }

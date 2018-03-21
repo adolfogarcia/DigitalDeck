@@ -47,6 +47,8 @@ public class Deck {
 
     }
 
+    // randomly shuffle deck by going through deck and swap its place
+    // with another random card in the deck. Not the best but ya know
     private void shuffleDeck()
     {
         Random rand = new Random();
@@ -57,6 +59,7 @@ public class Deck {
 
             mDeck[x].isDrawn = false;
             mDeck[i].isDrawn = false;
+
             Card temp = mDeck[x];
             mDeck[x] = mDeck[i];
             mDeck[i] = temp;
@@ -73,7 +76,7 @@ public class Deck {
         return returnStr;
     }
 
-    public String drawCard()
+    public Card drawCard()
     {
         while(mDeck[topOfDeck].isDrawn == true)
         {
@@ -86,7 +89,9 @@ public class Deck {
         Card temp = mDeck[topOfDeck];
         mDeck[topOfDeck].isDrawn = true;
         topOfDeck++;
-        return temp.toString();
+        return temp;
     }
 
 }
+
+
