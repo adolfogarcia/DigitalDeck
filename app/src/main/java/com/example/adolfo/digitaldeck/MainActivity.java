@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -22,18 +23,19 @@ public class MainActivity extends Activity {
       //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
       //  this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-       // R.id.textView1.setMovementMethod(new ScrollingMovementMethod());
-
+        /// Make hand view scrollable
+        TextView handTV = (TextView) findViewById(R.id.handTextView);
+        handTV.setMovementMethod(new ScrollingMovementMethod());
 
     }
 
+
+
     public void hitMe(View v)
     {
-        TextView textBox = (TextView) findViewById(R.id.textView1);
+        TextView textBox = (TextView) findViewById(R.id.handTextView);
 
-        Card newCard = mDeck.drawCard();
-        //textBox.setText(newCard.toString());
-        mHand.add(newCard);  //going wrong here
+        mHand.add(this.getBaseContext(), mDeck);
         textBox.setText(mHand.toString());
     }
 
